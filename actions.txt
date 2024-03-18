@@ -1,0 +1,15 @@
+1. Build Infra using Terraform (infrastructure)
+    terraform init -backend-config backend.conf
+    terraform plan
+    terraform apply -auto-approve
+2. Build application (root folder) - docker build, push nodeapp:2edsf2wer
+3. Get kubeconfig using aws cli
+    aws eks update-kubeconfig --region me-central-1 --name my-cluster
+4. Set env variable KUBE_CONFIG_PATH (eg. ~./kube.config)
+5. Set environment variable TF_VAR_app_image_name
+6. Set env variable TF_VAR_mysql_password in github actions secrets
+    https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
+7. Application & database deployment to kubernetes (terraform-app-manifests)
+    terraform init -backend-config backend.conf
+    terraform plan
+    terraform apply -auto-approve
